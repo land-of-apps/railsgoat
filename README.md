@@ -44,6 +44,12 @@ Initialize the database:
 $ rails db:setup
 ```
 
+If you run into issues on m1 macbooks run the following:
+```bash
+$ gem pristine ffi sassc
+$ bundle update ffi
+```
+
 Start the Thin web server:
 
 ```bash

@@ -24,7 +24,6 @@ gem "ruby-prof"
 gem "sassc-rails"
 gem "simplecov", require: false, group: :test
 gem "sqlite3"
-gem "therubyracer"
 gem "turbolinks"
 gem "uglifier"
 gem "unicorn"
