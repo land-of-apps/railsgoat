@@ -41,7 +41,7 @@ $ gem install bundler
 Initialize the database:
 
 ```bash
-$ rails db:setup
+$ bundle exec rails db:setup
 ```
 
 If you run into issues on m1 macbooks run the following:
@@ -53,7 +53,7 @@ $ bundle update ffi
 Start the Thin web server:
 
 ```bash
-$ rails server
+$ bundle exec rails server
 ```
 
 Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
