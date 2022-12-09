@@ -93,6 +93,12 @@ In this case, remove that server.pid file and try again. Note also that this fil
 
 RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
 
+Install Phantomjs via brew
+
+```
+brew tap homebrew/cask && brew cask install phantomjs
+```
+
 ```
 $ rails training
 ```
