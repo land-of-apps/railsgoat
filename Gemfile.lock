@@ -58,6 +58,11 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    appmap (0.95.0)
+      activesupport
+      method_source
+      rack
+      reverse_markdown
     aruba (0.14.12)
       childprocess (>= 0.6.3, < 4.0.0)
       contracts (~> 0.9)
@@ -258,6 +263,8 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    reverse_markdown (2.1.1)
+      nokogiri
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -344,6 +351,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  appmap
   aruba
   bcrypt
   better_errors
