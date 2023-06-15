@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 class SessionsController < ApplicationController
+  include PublicHelper
+  
   skip_before_action :has_info
   skip_before_action :authenticated, only: [:new, :create]
+  before_action :publicly_accessible, only: [:new, :create]
 
   def new
     @url = params[:url]
