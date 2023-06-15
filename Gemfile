@@ -6,7 +6,7 @@ gem 'appmap', :groups => [:development, :test]
 
 gem "rails", "6.0.0"
 
-ruby "2.6.5"
+ruby "2.7.3"
 
 gem "aruba"
 gem "bcrypt"
