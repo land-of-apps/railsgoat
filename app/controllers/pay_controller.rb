@@ -35,8 +35,8 @@ class PayController < ApplicationController
     redirect_to user_pay_index_path
   end
 
-  def decrypted_bank_acct_num
-    decrypted = Encryption.decrypt_sensitive_value(params[:value_to_decrypt])
+  def decrypted_bank_acct_num(pay_id)
+    decrypted = Encryption.decrypt_sensitive_value(pay_id, params[:value_to_decrypt])
     respond_to do |format|
       format.json { render json: {account_num: decrypted || "No Data" } }
     end
