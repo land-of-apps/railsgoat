@@ -1,0 +1,326 @@
+# This document can be generated with the following command: 
+# npx @appland/appmap@latest openapi
+#
+# NOTE: You will need Node.js installed on your machine to run the above command
+#
+# Some helpful options:
+#   --output-file        output file name
+#   --openapi-title      title field of the OpenAPI document
+#   --openapi-version    version field of the OpenAPI document
+#
+# For more info, run:
+# npx @appland/appmap@latest openapi --help
+#
+# Visit our docs: https://appmap.io/docs/openapi.html
+#
+openapi: 3.0.1
+info:
+  title: RailsGoat + AppMap
+  version: v1
+paths:
+  /:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      parameters:
+        - name: url
+          in: query
+          schema:
+            type: string
+  /admin/{admin_id}/dashboard:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /admin/{admin_id}/get_all_users:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /assets:
+    get:
+      responses:
+        '200':
+          content:
+            application/font-woff: {}
+            application/javascript: {}
+            image/jpeg: {}
+            image/png: {}
+            text/css: {}
+          description: OK
+  /dashboard/change_graph:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+      parameters:
+        - name: graph
+          in: query
+          schema:
+            type: string
+  /dashboard/home:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /schedule:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+          description: OK
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                date_range1:
+                  type: string
+                schedule:
+                  type: object
+                  properties:
+                    event_desc:
+                      type: string
+                    event_name:
+                      type: string
+                    event_type:
+                      type: string
+  /sessions:
+    post:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                authenticity_token:
+                  type: string
+                commit:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                url:
+                  type: string
+                utf8:
+                  type: string
+  /signup:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /upload:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                authenticity_token:
+                  type: string
+                benefits:
+                  type: object
+                  properties:
+                    backup:
+                      type: string
+                    upload:
+                      type: object
+                utf8:
+                  type: string
+  /users:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                authenticity_token:
+                  type: string
+                commit:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    admin:
+                      type: string
+                    email:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                utf8:
+                  type: string
+  /users/8:
+    post:
+      responses:
+        '302':
+          content:
+            text/html: {}
+          description: Found
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                authenticity_token:
+                  type: string
+                commit:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    first_name:
+                      type: string
+                    id:
+                      type: string
+                    last_name:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                utf8:
+                  type: string
+  /users/8.json:
+    post:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+          description: OK
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                authenticity_token:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    first_name:
+                      type: string
+                    id:
+                      type: string
+                    last_name:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                utf8:
+                  type: string
+  /users/{id}:
+    put:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+          description: OK
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    admin:
+                      type: string
+                    id:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+  /users/{user_id}/account_settings:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /users/{user_id}/benefit_forms:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+  /users/{user_id}/work_info:
+    get:
+      responses:
+        '200':
+          content:
+            text/html: {}
+          description: OK
+components: {}
+
