@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   # Our security guy keep talking about sea-surfing, cool story bro.
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
-  private
+  protected
 
   def mailer_options
     ActionMailer::Base.default_url_options[:protocol] = request.protocol
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   def administrative
     if !is_admin?
      redirect_to root_url
-   end
+    end
   end
 
   def has_info
