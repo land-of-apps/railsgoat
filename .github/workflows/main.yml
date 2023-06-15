@@ -1,0 +1,81 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: CI
+
+on:
+  push:
+  pull_request:
+    types:
+      - closed
+
+permissions:
+  # Required by the git-auto-commit-action
+  contents: write
+
+env:
+  APPMAP_TELEMETRY_DISABLED: "true"
+  RAILSGOAT_MAINTAINER: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install phantomjs
+        run: |
+          mkdir -p /opt/phantomjs-2.1.1
+          wget https://assets.membergetmember.co/software/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2
+          tar -xvf /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /opt/phantomjs-2.1.1
+          ln -s /opt/phantomjs-2.1.1/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+          phantomjs --version
+  
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install AppMap tools
+        run: |
+          curl -o /usr/local/bin/appmap -L https://github.com/getappmap/appmap-js/releases/download/%40appland%2Fappmap-preflight-v1.0-pre.26/appmap-preflight-linux-x64
+          chmod a+x /usr/local/bin/appmap
+  
+      - name: Rails test setup
+        run: |
+          bundle exec rake db:test:prepare
+
+      - name: Run tests
+        run: bundle exec rspec
+
+      - name: AppMap Generate OpenAPI Documentation
+        run: npx @appland/appmap@latest openapi --openapi-title "RailsGoat + AppMap" --output-file openapi.yml
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: openapi.yml
+          commit_message: 'chore: Update openapi.yml'
+
+      - name: Build AppMap archive
+        uses: getappmap/archive-action@v1-pre.13
+        if: ${{ github.event.pull_request.base.sha == '' }}
+
+      - name: AppMap Analysis
+        id: preflight
+        uses: getappmap/analyze-action@v1-pre.13
+        if: ${{ github.event.pull_request.base.sha != '' }}
+        with:
+          base-revision: ${{ github.event.pull_request.base.sha }}
+          head-revision: ${{ github.event.pull_request.head.sha }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          verbose: false
