@@ -67,11 +67,13 @@ jobs:
         if: steps.test.outputs.exit-status == 0
         run: npx @appland/appmap@latest openapi --openapi-title "RailsGoat + AppMap" --output-file openapi.yml
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: steps.test.outputs.exit-status == 0
-        with:
-          file_pattern: openapi.yml
-          commit_message: 'chore: Update openapi.yml'
+      # TODO: This is a cool feature, but the openapi.yml of this project is not stable yet - possibly due
+      # to the test failures.
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   if: steps.test.outputs.exit-status == 0
+      #   with:
+      #     file_pattern: openapi.yml
+      #     commit_message: 'chore: Update openapi.yml'
 
       - name: Build AppMap archive
         uses: getappmap/archive-action@v1-pre.13
