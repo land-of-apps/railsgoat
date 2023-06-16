@@ -16,17 +16,23 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= (
+    return @current_user if @current_user_loaded
+
+    @current_user = (
       User.find_by(auth_token: cookies[:auth_token].to_s) ||
       User.find_by(id: session[:user_id].to_s)
-    )
+    ).tap do
+      @current_user_loaded = true
+    end
   end
 
+  # @label security.authentication
   def authenticated
      path = request.fullpath.present? ? root_url(url: request.fullpath) : root_url
      redirect_to path and reset_session if !current_user
   end
 
+  # @label security.authorization
   def is_admin?
     current_user.admin if current_user
   end

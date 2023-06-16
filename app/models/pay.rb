@@ -16,6 +16,6 @@ class Pay < ApplicationRecord
   end
 
   def encrypt_bank_account_num
-    self.bank_account_num = Encryption.encrypt_sensitive_value(self.bank_account_num)
+    self.bank_account_num = Encryption.encrypt_sensitive_value(self.id, self.bank_account_num)
   end
 end
