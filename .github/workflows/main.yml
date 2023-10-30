@@ -92,4 +92,3 @@ jobs:
       - name: Report the exit status
         if: steps.test.outputs.exit-status != 0
         run: exit ${{ steps.test.outputs.exit-status }}
-  
