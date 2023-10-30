@@ -52,11 +52,18 @@ jobs:
         with:
           node-version: 16
 
+      - name: Enable appmap gem update
+        run: bundle config unset deployment
       - name: Install AppMap tools
-        run: |
-          curl -o /usr/local/bin/appmap -L https://github.com/getappmap/appmap-js/releases/download/%40appland%2Fappmap-preflight-v1.0-pre.26/appmap-preflight-linux-x64
-          chmod a+x /usr/local/bin/appmap
-  
+        id: install-appmap
+        uses: getappmap/install-action@v1
+        with:
+          project-type: bundler
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "ci: Add AppMap language agent and appmap.yml"
+
       - name: Rails test setup
         run: |
           bundle exec rake db:test:prepare
