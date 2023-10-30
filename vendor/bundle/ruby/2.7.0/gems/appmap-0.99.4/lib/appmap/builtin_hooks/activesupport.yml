@@ -1,0 +1,24 @@
+- method: ActiveSupport::Callbacks::CallbackSequence#invoke_before
+  label: mvc.before_action
+  require_name: active_support
+  force: true
+- method: ActiveSupport::Callbacks::CallbackSequence#invoke_after
+  label: mvc.after_action
+  require_name: active_support
+  force: true
+- method: ActiveSupport::SecurityUtils#secure_compare
+  label: crypto.secure_compare
+  require_name: active_support/security_utils
+  force: true
+- method: ActiveSupport.run_load_hooks
+  labels:
+  - deserialize.safe
+  - lang.eval.safe
+  require_name: active_support/lazy_load_hooks
+  force: true
+- method: ActiveSupport::MessageEncryptor#encrypt_and_sign
+  require_name: active_support/message_encryptor
+  force: true
+- method: ActiveSupport::MessageEncryptor#decrypt_and_verify
+  require_name: active_support/message_encryptor
+  force: true
