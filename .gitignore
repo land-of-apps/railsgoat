@@ -12,3 +12,10 @@ coverage
 .tags
 /.vagrant
 /vendor/ruby
+
+
+# AppMap artifacts
+/.appmap
+
+# Node modules
+/node_modules

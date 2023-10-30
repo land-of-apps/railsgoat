@@ -1,0 +1,15 @@
+current directory: /home/runner/work/railsgoat/railsgoat/vendor/bundle/ruby/2.7.0/gems/appmap-0.99.4/ext/appmap
+/opt/hostedtoolcache/Ruby/2.7.3/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/2.7.3/x64/lib/ruby/2.7.0 -r ./siteconf20231030-1842-17znscg.rb extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/railsgoat/railsgoat/vendor/bundle/ruby/2.7.0/gems/appmap-0.99.4/ext/appmap
+make "DESTDIR=" clean
+
+current directory: /home/runner/work/railsgoat/railsgoat/vendor/bundle/ruby/2.7.0/gems/appmap-0.99.4/ext/appmap
+make "DESTDIR="
+compiling appmap.c
+linking shared-object appmap/appmap.so
+
+current directory: /home/runner/work/railsgoat/railsgoat/vendor/bundle/ruby/2.7.0/gems/appmap-0.99.4/ext/appmap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 appmap.so ./.gem.20231030-1842-xekr5f/appmap

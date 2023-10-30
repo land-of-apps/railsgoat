@@ -1,0 +1,17 @@
+require 'rake/testtask'
+
+namespace :test do
+  task 'perftest:benchmark_mode' do
+    ENV["BENCHMARK_TESTS"] = '1'
+  end
+
+  Rake::TestTask.new(benchmark: ['test:prepare', 'test:perftest:benchmark_mode']) do |t|
+    t.libs << 'test'
+    t.pattern = 'test/performance/**/*_test.rb'
+  end
+
+  Rake::TestTask.new(profile: 'test:prepare') do |t|
+    t.libs << 'test'
+    t.pattern = 'test/performance/**/*_test.rb'
+  end
+end
